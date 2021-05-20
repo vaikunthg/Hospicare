@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{user}}
+{% endblock %}
+
+{% block header %}
+<link rel="stylesheet" href="../static/Style/details.css">
+{% endblock %}
+
+{% block cur_user %}
+{% if(user!="" and role!="admin" and user!="favicon.ico") %}
+    <li><a href="{{url_for('login')}}">{{ user }}</a></li>
+{% elif(user!="" and role=="admin") %}
+    <li><a href="{{url_for('userDetails')}}">{{ user }}</a></li>
+    <li><a href="{{url_for('login')}}">Administration</a></li>
+{% else %}
+    {{ super() }}
+{% endif %}
+{% endblock %}
+
+{% block content %}
+    <p class="formatting">{{name}}</p>
+    <p class="formatting">{{gender}}</p>
+    <p class="formatting">{{dateOfBirth}}</p>
+    <p class="formatting">{{address}}</p>
+    <p class="formatting">{{emailId}}</p>
+    <p class="formatting">{{Phone No}}</p>
+    <p class="formatting">{{other}}</p>
+    <p class="formatting push"><a href="">Click Here To Change Details</a></p>
+    <p class="formatting push"><a href="url_for('/logout')">Logout</a></p>
+{% endblock %}

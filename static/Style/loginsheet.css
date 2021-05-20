@@ -1,0 +1,84 @@
+
+
+.generated {
+    line-height: 1.7;
+    text-align: center;
+    border-radius: 1.5rem;
+    color: white;
+    height: 73vh;
+    width: 97vw;
+    background-image: url(../Images/loginImage.png);
+    padding: 1.4rem;
+
+}
+.block {
+    margin-top: 10rem;
+    margin-left: 1rem;
+}
+.form {
+    /* background-color: hsla(202, 100%, 50%, 22%); */
+    background-color: hsla(189, 100%, 35%,22%);
+    width: 50vh;
+    height: 50vh;
+    border-radius: 40px;
+    margin-left: auto;
+    text-align: left;
+    padding: 40px 0;
+}
+
+.form input[type=text],.form input[type=password] {
+    width:19vw;
+    padding: 7px;
+    margin: 10px;
+    border-radius: 15px;
+    background-color: rgba(10, 10, 10, 0.192);
+    border:1px solid black;
+}
+.form input[type=text]::placeholder, .form input[type=text]:focus{
+    color: whitesmoke;
+
+}
+.form input[type=password]::placeholder, .form input[type=password]:focus{
+    color: whitesmoke;
+
+}
+
+.form p, .form h3, .form .btn{
+    padding: 0rem 1.5rem;
+}
+
+
+.btn {
+    border-radius: 0.4rem;
+    width: 8rem;
+    height: 1.5rem;
+    border: 1px hsl(202, 100%, 50%) solid;
+    background-color: hsl(202, 100%, 50%) ;
+    padding-bottom: 2rem;
+}
+
+.center {
+    text-align: center;
+    padding: 2px;
+}
+
+.center a {
+    text-decoration: none;
+    color: white;
+}
+.center hr {
+    margin: 1vh 2vw;
+    border-color: hsla(0, 100%, 50%, 0.452);
+    color: hsla(0, 100%, 50%, 0.452);
+}
+
+.register {
+    background-color: hsla(151, 47%, 51% , 93%);
+    border: 1px solid hsla(151, 47%, 51% , 93%);
+    padding: 5px 25px;
+    border-radius: 10px;
+    background-color: hsla(151, 47%, 51% , 93%);
+}
+
+
+

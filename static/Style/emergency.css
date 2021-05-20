@@ -1,0 +1,41 @@
+
+.generated {
+    font-size: larger;
+    line-height: 1.7;
+    text-align: center;
+    border-radius: 1.5rem;
+    color: white;
+    height: 77vh;
+    width: 100vw;   
+    background-image: linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.5)) , url(../Images/emergency.png);
+    opacity: 80%;
+
+}
+.image-content {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 50vh;
+    width: 100vw;
+}
+
+.left{
+    margin-right: 5vw;
+    margin-left: 5vw;
+}
+.right{
+    display: flex;
+    margin-left: 20vw;
+    height: 30vh;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.right a{
+    margin-top: 5vh;
+    text-decoration: none;
+    color: black;
+    background-color: hsl(111, 82%, 70%);
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    width: 20vw;
+}

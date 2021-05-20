@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Login
+{% endblock %}
+
+{% block header %}
+    <link rel="stylesheet" href="../static/Style/loginsheet.css">
+{% endblock %}
+
+{% block cur_user %}
+{% if(user!="" and role!="admin" and user!="favicon.ico") %}
+    <li><a href="{{url_for('login')}}">{{ user }}</a></li>
+{% elif(user!="" and role=="admin") %}
+    <li><a href="{{url_for('userDetails')}}">{{ user }}</a></li>
+    <li><a href="{{url_for('login')}}">Administration</a></li>
+{% else %}
+    {{ super() }}
+{% endif %}
+{% endblock %}
+
+{% block content %}
+    <form method="post" class='form'>
+        <div class="center"><h3>Login</h3></div>
+        {{ error }}
+        <p><input type="text" name="userid" placeholder="Phone No"></p>
+        <p><input type="password" name="password" placeholder="Password"></p>
+        <div class="center">
+            <button class='btn' type="submit">Login</button>
+            <p><a href="{{url_for('forgotPass')}}">Forgot Password?</a></p>
+            <hr>
+            <a href="{{url_for('signin')}}" class="register">Register Now</a>
+        </div>
+    </form>
+{% endblock %}

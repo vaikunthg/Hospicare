@@ -1,0 +1,22 @@
+
+.tble{
+    margin: 2rem 2rem;
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 90vw;
+}
+
+.tble td ,th {
+    border: 1px #fff solid;
+    padding: 8px;
+}
+
+.tble tr:nth-child(even){background-color: rgba(15, 143, 141, 0.226);}
+
+.tble th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: hsl(179, 83%, 42%);
+    color: white;
+}

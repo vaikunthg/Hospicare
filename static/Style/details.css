@@ -1,0 +1,35 @@
+.generated {
+    font-size: larger;
+    line-height: 1.7;
+    border-radius: 1.5rem;
+    color: white;
+    height: 77vh;
+    width: 100vw;   
+    background-image: linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.5)) , url(../Images/detailsBackground.jpg);
+    background-size: cover;
+    opacity: 80%;
+}
+
+.formatting {
+    padding: 0.3rem;
+    margin: 0.3rem 0;
+    text-transform: uppercase;  
+    color: white;
+    padding-left: 2rem;
+}
+
+.push{
+    text-align: center;
+}
+
+.generated a {
+    text-decoration: none;
+    color: white;
+    width: 10vw;
+    height: 2vh;
+    border: 2px solid black;
+    padding: 0.5rem;
+    border-radius: 1rem;
+    background-color: hsla(202, 100%, 50%, 0.7);
+}
+

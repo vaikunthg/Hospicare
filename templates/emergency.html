@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Emergency
+{% endblock %}
+{% block header %}
+    <link rel="stylesheet" href="../static/Style/emergency.css">
+{% endblock %}
+
+{% block cur_user %}
+{% if(user!="" and role!="admin" and user!="favicon.ico") %}
+    <li><a href="{{url_for('login')}}">{{ user }}</a></li>
+{% elif(user!="" and role=="admin") %}
+    <li><a href="{{url_for('userDetails')}}">{{ user }}</a></li>
+    <li><a href="{{url_for('login')}}">Administration</a></li>
+{% else %}
+    {{ super() }}
+{% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="image-content">
+    <div class="left"><p>Don’t Panic! 
+        Our personnel will guide you and will tell you the right steps...
+        <br><br>
+        If you want to call our personnel please click on call us*.
+        <br><br>
+        
+        Or click on Hospitals to check for nearby by avaiable hospitals.</p></div>
+    <div class="right">
+        <a href="{{url_for('callUs')}}">Call Us</a>
+        <a href="{{url_for('hospitals')}}">Hospitals</a>
+    </div>
+</div>
+{% endblock %}

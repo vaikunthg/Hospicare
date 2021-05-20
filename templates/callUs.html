@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Verification
+{% endblock %}
+
+{% block header %}
+    <link rel="stylesheet" href="../static/Style/callUs.css">
+{% endblock %}
+
+{% block cur_user %}
+{% if(user!="" and role!="admin" and user!="favicon.ico") %}
+    <li><a href="{{url_for('login')}}">{{ user }}</a></li>
+{% elif(user!="" and role=="admin") %}
+    <li><a href="{{url_for('userDetails')}}">{{ user }}</a></li>
+    <li><a href="{{url_for('login')}}">Administration</a></li>
+{% else %}
+    {{ super() }}
+{% endif %}
+{% endblock %}
+
+
+{% block content %}
+    <form method="post" class='form'>
+        <div class="image-content">
+            <div class="left">
+                <p>Hospicare visions to change the entire process of the emergency medical service system that is more user-centric.  We hope to help people connect with the nearest medical services in dire situations.<br>
+                Our main goal is to provide the best medical services available in the shortest time possible. <br>
+                We follow the motto <br>“Better care results in better understanding.”
+                Please help us improve our services by filling the feedback form.<br>
+                Thank You for your support!</p>
+            </div>
+            <div class="right">
+                <form method="POST" class="form">
+                    <p><input type="text" name="mail" placeholder="Email ID"></p>
+                    <p><textarea name="comment" placeholder="Feedback" cols="30" rows="3"></textarea></p>
+                    <button type="submit" class='btn'>Submit</button>
+                </form>
+            </div>
+        </div>
+    </form>
+{% endblock %}

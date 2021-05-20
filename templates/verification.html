@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Verification
+{% endblock %}
+
+{% block header %}
+    <link rel="stylesheet" href="../static/Style/loginsheet.css">
+{% endblock %}
+
+
+
+{% block content %}
+    <form method="post" class='form'>
+        <div class="center"><h3>Enter OTP</h3></div>    
+        {{ error }}
+        <p><input type="text" name="phoneOtp" placeholder="Phone No OTP"></p>
+        <p><input type="text" name="mailOtp" placeholder="Mail OTP"></p>
+        <div class="center">
+            <button class='btn' type="submit">Submit</button>
+        </div>
+    </form>
+{% endblock %}

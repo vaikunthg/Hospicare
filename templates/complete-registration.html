@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Sign In
+{% endblock %}
+
+{% block header %}
+    <link rel="stylesheet" href="../static/Style/loginsheet.css">
+{% endblock %}
+
+{% block cur_user %}
+{% if(user!="" and role!="admin" and user!="favicon.ico") %}
+    <li><a href="{{url_for('login')}}">{{ user }}</a></li>
+{% elif(user!="" and role=="admin") %}
+    <li><a href="{{url_for('userDetails')}}">{{ user }}</a></li>
+    <li><a href="{{url_for('login')}}">Administration</a></li>
+{% else %}
+    {{ super() }}
+{% endif %}
+{% endblock %}
+
+{% block content %}
+<form method="post" class='form' style="height:70vh;">
+    <div class="center"><h3>Complete Registration</h3></div>
+    {{ password }}
+    <p><input type="text" name="name" placeholder="Name"></p>
+    <p><input type="text" name="email" placeholder="Email"></p>
+    <p><input type="password" name="password" placeholder="Password"></p>
+    <p><input type="password" name="confirm-password" placeholder="Confirm Password"></p>
+    <p><input type="text" name="age" placeholder="Age"></p>
+    <p><input type="text" name="gender" placeholder="Gender"></p>
+    <p><input type="text" name="dob" placeholder="DOB"></p>
+    <div class="center">
+        <button class='btn' type="submit" style="background-color: hsla(151, 47%, 51% , 93%);">Register</button>
+    </div>
+</form>
+{% endblock %}

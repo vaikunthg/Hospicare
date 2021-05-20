@@ -1,0 +1,9 @@
+.generated {
+    line-height: 1.7;
+    text-align: center;
+    border-radius: 1.5rem;
+    height: 73vh;
+    width: 97vw;
+    background-image: url(../Images/map.jpg);
+    padding: 1.4rem;
+}

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Hospital
+{% endblock %}
+
+{% block header %}
+    <link rel="stylesheet" href="../static/Style/hospital.css">
+{% endblock %}
+
+{% block cur_user %}
+{% if(user!="" and role!="admin" and user!="favicon.ico") %}
+    <li><a href="{{url_for('login')}}">{{ user }}</a></li>
+{% elif(user!="" and role=="admin") %}
+    <li><a href="{{url_for('userDetails')}}">{{ user }}</a></li>
+    <li><a href="{{url_for('login')}}">Administration</a></li>
+{% else %}
+    {{ super() }}
+{% endif %}
+{% endblock %}
+
+{% block content %}
+    <div id="map"></div>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgCbgSirxlwhUE66nlU4RFxcIwRMdmMuI&callback=initMap&libraries=&v=weekly"
+      async></script>
+      <script src="../static/js/map.js"></script>
+{% endblock %}

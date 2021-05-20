@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/Style/style.css">
+    <link rel="icon" href="../static/Images/icon.svg" type="image/svg+xml" sizes="16x16">
+    {% block header %}
+    
+    {% endblock %}
+    <title>
+        {% block title %}
+        
+        {% endblock %}
+    </title>
+</head>
+<body>
+    <nav>
+        <div class="nav-bar">
+            <div class="upper">
+                <div class="logo"> 
+                    <a href="{{url_for('home')}}"><img src="../static/Images/Logo.svg" alt="Logo"></a>
+                </div>
+                <ul class="upper-nav">
+                    <li><a href="{{url_for('emergency')}}">Emergency</a></li>
+                    {% block cur_user %}
+                        <li><a href="{{url_for('login')}}">Sign In</a></li>
+                    {% endblock%}
+                </ul>
+            </div>
+            <div class="lower">
+                <ul class="nav-items">
+                    <li><a href="{{url_for('home')}}">Home</a></li>
+                    <li><a href="{{url_for('hospitals')}}">Hospital</a></li>
+                    <li><a href="{{url_for('bloodbank')}}">Blood Bank</a></li>
+                    <li><a href="{{url_for('callUs')}}">About Us</a></li>
+                    <li class="lower-pushed"><input type="text"></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="generating">
+        {% block generate %}
+        {% endblock %}
+    </div>
+    
+    <div class="generated block">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    {% block script %}
+    {% endblock %}
+</body>
+</html>

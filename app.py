@@ -251,7 +251,7 @@ def verification():
         phoneotp = str(request.form.get("phoneOtp"))   
         phoneSentOtp = sendPhoneOtp(phoneNo)
         mailotp = str(request.form.get("mailOtp"))  
-        mailSentOtp = sendMail(phoneNo)
+        mailSentOtp = sendMail(email)
         if(phoneotp==phoneSentOtp):
             if(mailotp==mailSentOtp):
                 return redirect(url_for('home',user=session['user'].replace('"',""),role=session['role'].replace('"',"")))

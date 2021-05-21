@@ -110,7 +110,7 @@ h1, h2, h3 {
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
-    margin: -24% 0;
+    margin: -22% 0;
 }
 
 .card {
@@ -188,3 +188,4 @@ h1, h2, h3 {
 #map {
     height: 100%;
 }
+  

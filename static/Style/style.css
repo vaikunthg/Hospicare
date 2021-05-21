@@ -117,7 +117,8 @@ h1, h2, h3 {
     margin: 0 4rem;
     border-radius: 1.5rem;
     color: white;
-    height: 21rem;
+    height: 17rem;
+    /* height: min-content; */
     width: 18rem;
     background-color: hsla(179, 83%, 42%, 0.466);
     padding: 1.7rem;
@@ -187,4 +188,3 @@ h1, h2, h3 {
 #map {
     height: 100%;
 }
-  

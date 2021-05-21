@@ -118,7 +118,6 @@ h1, h2, h3 {
     border-radius: 1.5rem;
     color: white;
     height: 17rem;
-    /* height: min-content; */
     width: 18rem;
     background-color: hsla(179, 83%, 42%, 0.466);
     padding: 1.7rem;

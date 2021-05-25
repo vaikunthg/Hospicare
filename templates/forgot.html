@@ -11,7 +11,7 @@
 
 {% block cur_user %}
 {% if(user!="" and role!="admin" and user!="favicon.ico") %}
-    <li><a href="{{url_for('login')}}">{{ user }}</a></li>
+    <li><a href="{{url_for('userDetails')}}">{{ user }}</a></li>
 {% elif(user!="" and role=="admin") %}
     <li><a href="{{url_for('userDetails')}}">{{ user }}</a></li>
     <li><a href="{{url_for('login')}}">Administration</a></li>

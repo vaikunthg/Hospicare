@@ -25,6 +25,7 @@ else:
 
 app.config['SECRET_KEY'] = b'secretism'
 db = SQLAlchemy(app)
+app.config["SESSION_PERMANENT"] = False
 
 login_manager = login_manager.LoginManager()
 login_manager.init_app(app)
@@ -115,7 +116,6 @@ role =  ""
 phoneotp = ""
 email = ""
 
-
 # methods
 @login_manager.user_loader
 def load_user(user_id):
@@ -124,40 +124,50 @@ def load_user(user_id):
 
 
 
+@app.route('/')
 @app.route('/home')
 @app.route('/<user>/')
-@app.route('/<user>/<role>/')
-@app.route('/')
-def home(user="",role=""):
+@app.route('/<user>/<role>')
+def home(user=name,role=""):
     global name
+    if(session.get('logged_in')==True):
+        user = session['user']
     name = user
-    if(name!=""):
-        return render_template('index.html',user=user)
-    elif(name!="" and role!=""):
-        return render_template('index.html',user=name,role="admin".replace('"',""))
+    if(name!="" and session.get('role')!='admin'):
+        return render_template('index.html',user=name,role="")
+    elif(name!="" and session.get('role')=="admin"):
+        return render_template('index.html',user=name,role=session.get('role').replace('"',""))
     return render_template('index.html',user="")
 
 @app.route('/bloodbank')
 def bloodbank():
+    if(session.get('role')=='admin'):
+        role='admin'
+    else:
+        role=''
     demo = [{'id':1,'name':'Lokmanya blood Bank','address':'Pune','phone':'90750xxxxx'},
             {'id':2,'name':'MMF Ratna blood Bank','address':'Pune','phone':'91735xxxxx'},
             {'id':3,'name':'Joglekar blood Bank','address':'Pune','phone':'83235xxxxx'},
             {'id':4,'name':'Swanand blood Bank','address':'Pune','phone':'21335xxxxx'},
             {'id':5,'name':'Navjeenvan Blood Bank','address':'Pune','phone':'55223xxxxx'}]
-    return render_template('bloodbank.html', user=name, items=demo)
+    return render_template('bloodbank.html', user=name, items=demo, role=role)
 
 @app.route('/hospitals')
 def hospitals():
-    
-    return render_template('hospital.html', user=name)
+    if(session.get('role')=='admin'):
+        role='admin'
+    else:
+        role=''
+    return render_template('hospital.html', user=name, role=role)
 
-@app.route('/status')
-def status():
-    return render_template('status.html')
 
 @app.route('/emergency',methods = ['GET', 'POST'])
 def emergency():
-    return render_template('emergency.html', user=name)
+    if(session.get('role')=='admin'):
+        role='admin'
+    else:
+        role=''
+    return render_template('emergency.html', user=name,role=role)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -186,6 +196,13 @@ def login():
                 return redirect(url_for('home',user=name,role=session['role'].replace('"',"")))
     return render_template('login.html', user=name,error="")
     
+@app.route('/logout', methods=['GET', 'POST'])
+def logout():
+    global name
+    session.pop('user',None)
+    session.pop('logged_in',None)
+    name = ""
+    return redirect(url_for('home',user=""))
 
 @app.route('/signin', methods=['GET', 'POST'])
 def signin():
@@ -262,46 +279,59 @@ def verification():
 
 @app.route('/userDetails')
 def userDetails():
-    return render_template('details.html',name="Sourav",gender="Male",dateofbirth="22/09/2002",emailId="souravkxx@gmail.com",phoneNo="999007xxxx",other="No Allergies")
+    if(session.get('role')=='admin'):
+        role='admin'
+    else:
+        role=''
+    return render_template('details.html',user=name, role=role ,name="Sourav",gender="Male",dateOfBirth="22/09/2002", address="Pune",emailId="souravkxx@gmail.com",phoneNo="999007xxxx",other="No Allergies")
 
 @app.route('/about')
 @app.route('/callUs')
 def callUs(): 
-    return render_template('callUs.html', user=name)
+    if(session.get('role')=='admin'):
+        role='admin'
+    else:
+        role=''
+    return render_template('callUs.html', user=name, role=role)
 
 
 @app.route('/admin', methods=['GET', 'POST'])
 def admin():
     global name
     if(ENV=='dev'):
-        userid = str(request.form.get("userid"))
-        password = str(request.form.get("password"))
-        query = db.Query(admin).filter(admin.email==userid, admin.password==password).first()
-        if(query):
-            name = db.Query(admin).get(admin.uuid==query.uuid)
-            session['user'] = name
-            session['logged_in'] = True
-            session['role'] = "admin"
-            return redirect(url_for('home',user=name,role=session['role'].replace('"',"")))
+        if request.method == "POST":
+            userid = str(request.form.get("userid"))
+            password = str(request.form.get("password"))
+            query = db.Query(admin).filter(admin.email==userid, admin.password==password).first()
+            if(query):
+                name = db.Query(admin).get(admin.uuid==query.uuid)
+                session['user'] = name
+                session['logged_in'] = True
+                session['role'] = "admin"
+                return redirect(url_for('home',user=name,role=session['role'].replace('"',"")))
         return render_template('admin.html', user=name)
     elif(ENV=='demo'):
         if request.method == "POST":
             userid = str(request.form.get("userid"))
             password = str(request.form.get("password"))
             if(userid==password):
-                print('in')
-                session['user'] = name
+                session['user'] = userid
                 session['logged_in'] = True
                 session['role'] = "admin"
-                return redirect(url_for('home',user=name,role=session['role'].replace('"',"")))
-            else:
-                return render_template('admin.html',user="")
+                name=session['user'].replace('"',"")
+                print("name: " + session['user'] + "  /  " + "role: " + session['role'].replace('"',"") + "  /  ")
+                return redirect(url_for('home',user=session['user'].replace('"',""),role=session['role'].replace('"',"")))
+            return render_template('admin.html',user="")
     return render_template('admin.html',user="")
 
 
 @app.route('/forgotPass', methods=['GET', 'POST'])
 def forgotPass():
-    return render_template('forgot.html', user="")
+    if(session.get('role')=='admin'):
+        role='admin'
+    else:
+        role=''
+    return render_template('forgot.html', user="", role=role)
 
 if __name__ == '__main__':
     app.run(debug=True)

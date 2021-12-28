@@ -15,6 +15,7 @@ app = Flask(__name__)
 # in 'demo' mode use Ur Name Instead of your number during registration
 ENV = 'demo'
 
+#condition:
 if (ENV == 'dev'):
     app.debug=True
     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:postgres:2729@localhost/test'
